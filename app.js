@@ -103,3 +103,20 @@ if (form && input) {
 }
 
 
+// ---------- Greeting on page load ----------
+function showGreeting() {
+  if (!chat) return;
+  if (chat.children.length > 0) return; // prevents duplicates
+
+  addMsg(
+    "Hello! I'm Kozani, your perinatal companion 🤍",
+    "bot"
+  );
+}
+
+// Works even if the script loads after DOM is ready
+if (document.readyState === "loading") {
+  window.addEventListener("DOMContentLoaded", showGreeting);
+} else {
+  showGreeting();
+}
