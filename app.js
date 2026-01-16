@@ -103,28 +103,7 @@ if (form && input) {
 }
 
 
-// ---------- Greeting on page load ----------
-function showGreeting() {
-  if (!chat) return;
-
-  // Only prevent duplicates of the greeting, not any child
-  if (chat.querySelector('[data-greeting="true"]')) return;
-
-  const msgEl = document.createElement("div");
-  msgEl.className = "msg bot";
-  msgEl.setAttribute("data-greeting", "true");
-  msgEl.textContent = "Hello! I'm Kozani, your perinatal companion 🤍";
-
-  chat.appendChild(msgEl);
-
-  // Optional: scroll into view nicely
-  chat.scrollTo({ top: chat.scrollHeight, behavior: "smooth" });
-}
-
-
-// Works even if the script loads after DOM is ready
-if (document.readyState === "loading") {
-  window.addEventListener("DOMContentLoaded", showGreeting);
-} else {
-  showGreeting();
-}
+addMsg(
+  "Hello 🤍 I’m Kozani and I'm here to help.",
+  "bot"
+);
