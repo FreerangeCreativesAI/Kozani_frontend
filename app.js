@@ -127,6 +127,6 @@ if (form && input) {
 
 
 addMsg(
-  "Hello 🤍 I’m Kozani and I'm here to help. Would you like to tell me a little about yourself or you could ask me anything.",
+  "Hello 🤍 I’m Kozani and I’m here to listen and support you during your pregnancy or after birth.What’s on your mind today?",
   "bot"
 );
