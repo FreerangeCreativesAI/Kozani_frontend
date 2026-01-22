@@ -207,7 +207,7 @@ header.hero {
   gap: 6px;
  
   width: 100%;
-  max-width: 720px;
+  max-width: 100%;
   margin: 3rem auto 2rem;
   padding: 20px 24px;
 
@@ -221,20 +221,21 @@ header.hero {
 
 header.hero .brand { margin: 0; }
 header.hero .tagline { margin: 0; }
-header.hero .description { margin: 0; max-width: 55ch; }
+header.hero .description { margin: 0; max-width: 100%; }
 /*header.hero { width: 100%; }*/
 
 
 .brand {
   font-size: 2.4rem;
   font-weight: 600;
+  color: #0a0b0d;
   margin-bottom: 0.25rem;
 }
 
 .tagline {
   font-size: 1.05rem;
   font-weight: 500;
-  color: #6b7280; /* soft neutral */
+  color: #374151; /* soft neutral */
   margin-bottom: 1rem;
 }
 
