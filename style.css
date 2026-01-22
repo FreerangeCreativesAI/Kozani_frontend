@@ -199,17 +199,31 @@ header {
 }
 
 
-.hero {
-  display: block;        /* force vertical flow */
+header.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 6px;
+ 
+  width: 100%;
   max-width: 720px;
   margin: 3rem auto 2rem;
-  padding: 0 1.25rem;
+  padding: 20px 24px;
+
+  background: linear-gradient(180deg, var(--pink-100), #fff);
+  border: 1px solid var(--pink-200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
 }
 
-.hero h1,
-.hero p {
-  display: block;
-}
+
+
+header.hero .brand { margin: 0; }
+header.hero .tagline { margin: 0; }
+header.hero .description { margin: 0; max-width: 55ch; }
+/*header.hero { width: 100%; }*/
+
 
 .brand {
   font-size: 2.4rem;
