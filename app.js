@@ -127,6 +127,9 @@ if (form && input) {
 
 
 addMsg(
-  "Hello 🤍 I’m Kozani and I’m here to listen and support you during your pregnancy or after birth.What’s on your mind today?",
+  "Hello 🤍 I’m Kozani and I’m here to listen and support you through pregnancy and early motherhood — which can sometimes feel overwhelming. Would you like to ask me a question or do you just want someone to talk? How are you feeling today?",
   "bot"
 );
+
+
+/*Hi, I’m Kozani. I’m here to listen and support you through pregnancy and early motherhood — which can sometimes feel overwhelming. Would you like to ask me a question or do you just want someone to talk? How are you feeling today?*/
