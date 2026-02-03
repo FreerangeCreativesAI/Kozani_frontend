@@ -49,7 +49,8 @@ const API_BASE =
 
 async function sendToKozaniBackend(userText, retrievedSnippets = []) {
   try {
-    const response = await fetch("https://kozani-backend-kfrg.onrender.com/api/kozani-chat", {
+    
+    const response = await fetch("https://kozani-backend-ue69.onrender.com/api/kozani-chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -135,6 +136,7 @@ addMsg(
   "Hello, I’m Kozani. I’m here to support the emotional side of pregnancy and early motherhood — including times when you may feel sad, anxious, or overwhelmed. If you’d like, you can tell me a little about yourself, or share what’s been on your mind today.",
   "bot"
 );*/
+
 
 
 /*Hi, I’m Kozani. I’m here to listen and support you through pregnancy and early motherhood. Would you like to ask me a question or do you just want someone to talk?  If you are not sure what to say maybe you could start by telling me about yourself?*/
