@@ -45,7 +45,7 @@ function addMsg(text, sender = "bot") {
 const API_BASE =
   window.location.hostname === "localhost"
     ? "http://localhost:8787"
-    : "https://kozani-backend.onrender.com";
+    : "https://kozani-backend-2.onrender.com";
 
 
 async function sendToKozaniBackend(userText, retrievedSnippets = []) {
@@ -60,7 +60,7 @@ async function sendToKozaniBackend(userText, retrievedSnippets = []) {
       selectedModel = "llama-3.1-8b-instant";
     }
     
-    const response = await fetch("https://kozani-backend.onrender.com/api/kozani-chat", {
+    const response = await fetch("https://kozani-backend-2.onrender.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
