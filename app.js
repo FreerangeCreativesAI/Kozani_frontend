@@ -60,7 +60,7 @@ async function sendToKozaniBackend(userText, retrievedSnippets = []) {
       selectedModel = "llama-3.1-8b-instant";
     }
     
-    const response = await fetch("https://kozani-backend-2.onrender.com", {
+    const response = await fetch("https://kozani-backend-2.onrender.com/api/kozani-chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
