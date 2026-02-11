@@ -5,6 +5,7 @@ const form = $("#composer");
 const input = $("#msg");
 const chipsEl = $("#chips"); // optional / future use
 const progressBar = $("#model-progress");
+const modelSelect = $("#model-select"); 
 
 // If you use this, make sure setStatus is defined somewhere:
 function setStatus(text) {
@@ -49,8 +50,17 @@ const API_BASE =
 
 async function sendToKozaniBackend(userText, retrievedSnippets = []) {
   try {
+
+    let selectedModel;
+    try{
+      selectedModel = modelSelect ? modelSelect.value : "llama-3.1-8b-instant";
+    }
+    catch(err){
+      console.warn("Model select element not found, defaulting to llama-3.1-8b-instant");
+      selectedModel = "llama-3.1-8b-instant";
+    }
     
-    const response = await fetch("https://kozani-backend-ue69.onrender.com/api/kozani-chat", {
+    const response = await fetch("https://kozani-backend.onrender.com/api/kozani-chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +70,8 @@ async function sendToKozaniBackend(userText, retrievedSnippets = []) {
         history: conversationHistory.slice(-10), // 👈 send last 8 turns
         snippets: retrievedSnippets,
         language: "en",
-        client: "kozani-web-v3"
+        client: "kozani-web-v3",
+        selectedModel: selectedModel
       })
     });
 

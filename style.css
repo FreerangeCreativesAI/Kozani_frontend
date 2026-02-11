@@ -194,7 +194,7 @@ header {
   box-shadow: var(--shadow-1);
   padding: 10px;
   display: grid;
-  grid-template-columns: 1fr auto;   /* text area + send btn */
+  grid-template-columns: 4fr 1fr 1fr;   /* input (more than half) + model select + send btn (equal) */
   gap: 10px;
 }
 
@@ -270,6 +270,28 @@ header.hero .tagline2 { margin: 0; }
   background: #fff;
 }
 #msg::placeholder { color: #97a0ab; }
+
+/* Model selector dropdown */
+#model-select {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font: inherit;
+  color: var(--text);
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+#model-select:hover {
+  border-color: #d0d0d5;
+}
+
+#model-select:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--brand-strong) 60%, #fff);
+  outline-offset: 2px;
+}
 
 /* ---------- Buttons ---------- */
 button {
