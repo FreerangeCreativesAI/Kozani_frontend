@@ -194,7 +194,7 @@ header {
   box-shadow: var(--shadow-1);
   padding: 10px;
   display: grid;
-  grid-template-columns: 4fr 1fr 1fr;   /* input (more than half) + model select + send btn (equal) */
+  grid-template-columns: 10fr 1fr 1fr;   /* input (more than half) + model select + send btn (equal) */
   gap: 10px;
 }
 
