@@ -46,7 +46,7 @@ const API_BASE ={
   "local": "http://localhost:8787",
   "prod": "https://kozani-backend-2.onrender.com"}
 
-const environment = "prod"  // change to "local" if you want to connect to a locally running Kozani backend
+const environment = "local"  // change to "local" if you want to connect to a locally running Kozani backend
 
 
 
