@@ -204,7 +204,7 @@ header.hero {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 6px;
+  gap: 4px;
  
   width: 100%;
   max-width: 100%;
@@ -221,8 +221,11 @@ header.hero {
 
 header.hero .brand { margin: 0; }
 header.hero .tagline { margin: 0; }
+header.hero .tagline:first-of-type { margin-bottom: 12px; }
+header.hero .description + .tagline { margin-top: 16px; }
 
-header.hero .description { margin: 0; max-width: 100%; }
+header.hero .description { margin: 0; max-width: 100%; margin-bottom: 8px; }
+header.hero .description:last-of-type { margin-bottom: 0; }
 header.hero .tagline2 { margin: 0; }
 /*header.hero { width: 100%; }*/
 

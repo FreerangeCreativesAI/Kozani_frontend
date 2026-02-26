@@ -69,7 +69,7 @@ async function sendToKozaniBackend(userText, retrievedSnippets = []) {
       },
       body: JSON.stringify({
         query: userText,
-        history: conversationHistory.slice(-10), // 👈 send last 8 turns
+        history: conversationHistory.slice(-10),
         snippets: retrievedSnippets,
         language: "en",
         client: "kozani-web-v3",
@@ -141,7 +141,7 @@ if (form && input) {
 
 
 addMsg(
-  "Hello, I’m Kozani. I’m here to support you during pregnancy and early motherhood, including times when you may feel sad, anxious, or overwhelmed. If you’d like, you can tell me a little about yourself, or share what’s been on your mind today.",
+  "Hi, I'm Kozani. I'm here to walk alongside you during your pregnancy and early motherhood, especially on the days that feel heavy, confused, or lonely. You can tell me a little about yourself or simply share what's been on your mind today. I'm here to listen.",
   "bot"
 );
 
