@@ -8,7 +8,11 @@
         'sb_publishable__diWzjMaKAvj2JjA_-HlIA_2Yxo7fqu'
     );
     _sb.auth.getUser().then(({ data: { user }, error }) => {
-        if (!user || error) window.location.href = 'login.html';
+        if (!user || error) {
+            _sb.auth.signOut().then(() => {
+                window.location.href = 'login.html';
+            });
+        }
     });
     </script>
     <meta charset="utf-8" />
