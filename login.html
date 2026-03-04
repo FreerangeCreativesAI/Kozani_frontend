@@ -147,7 +147,9 @@
       setLoading('signup-btn', true);
       showMsg('', '');
 
-      const { error } = await sb.auth.signUp({ email, password });
+      const { error } = await sb.auth.signUp({ email, password , options :{
+        emailRedirectTo : 'https://kozani-frontend.onrender.com/confirmed.html'
+      }});
 
       setLoading('signup-btn', false);
 
