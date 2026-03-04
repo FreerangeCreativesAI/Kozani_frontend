@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Kozani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+  <style>
+    .confirmed-card {
+      text-align: center;
+      padding: 48px 32px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon-circle {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(160deg, var(--pink-100), #fff);
+      border: 1px solid var(--pink-200);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      line-height: 1;
+      text-align: center;
+      margin: 0 auto 8px;
+      animation: pop .5s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: .2s;
+      opacity: 0;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: scale(.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .confirmed-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #0a0b0d;
+      letter-spacing: -.4px;
+      animation: rise .45s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: .3s;
+      opacity: 0;
+    }
+
+    .confirmed-text {
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 320px;
+      animation: rise .45s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: .4s;
+      opacity: 0;
+    }
+
+    .confirmed-card .btn-primary {
+      margin-top: 8px;
+      animation: rise .45s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: .5s;
+      opacity: 0;
+    }
+
+    .card-footer {
+      animation: rise .45s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: .55s;
+      opacity: 0;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+
+      <!-- Header -->
+      <div class="card-header">
+        <div class="brand">Kozani</div>
+        <div class="tagline">Your caring companion through pregnancy and new motherhood</div>
+      </div>
+
+      <!-- Confirmation body -->
+      <div class="confirmed-card">
+        <div class="icon-circle">🤍</div>
+
+        <div class="confirmed-title">You're all set</div>
+
+        <p class="confirmed-text">
+          Your email has been confirmed. Welcome to Kozani, we're glad you're here.
+          Whenever you're ready, your companion is waiting.
+        </p>
+
+        <a href="index.html" class="btn-primary" style="text-decoration:none;width:100%;max-width:320px;">
+          Return to login
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        Your conversations are treated with care and won't be shared without your permission.
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

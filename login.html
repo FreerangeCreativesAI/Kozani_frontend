@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Kozani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+
+      <!-- Header -->
+      <div class="card-header">
+        <div class="brand">Kozani</div>
+        <div class="tagline">Your caring companion through pregnancy and new motherhood</div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" id="tab-login" role="tab" aria-selected="true"  aria-controls="panel-login"  onclick="switchTab('login')">Sign in</button>
+        <button class="tab-btn"        id="tab-signup" role="tab" aria-selected="false" aria-controls="panel-signup" onclick="switchTab('signup')">Create account</button>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+
+        <!-- Shared status box -->
+        <div class="msg-box" id="msg-box" role="alert"></div>
+
+        <!-- Login panel -->
+        <div class="panel active" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+          <label>
+            Email
+            <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
+          </label>
+          <label>
+            Password
+            <input type="password" id="login-password" placeholder="Your password" autocomplete="current-password" />
+          </label>
+          <button class="btn-primary" id="login-btn" onclick="handleLogin()">
+            <span class="spinner"></span>
+            <span class="btn-label">Sign in</span>
+          </button>
+        </div>
+
+        <!-- Sign-up panel -->
+        <div class="panel" id="panel-signup" role="tabpanel" aria-labelledby="tab-signup">
+          <label>
+            Email
+            <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" />
+          </label>
+          <label>
+            Password
+            <input type="password" id="signup-password" placeholder="Choose a password" autocomplete="new-password" />
+          </label>
+          <label>
+            Confirm password
+            <input type="password" id="signup-confirm" placeholder="Repeat your password" autocomplete="new-password" />
+          </label>
+          <button class="btn-primary" id="signup-btn" onclick="handleSignup()">
+            <span class="spinner"></span>
+            <span class="btn-label">Create account</span>
+          </button>
+        </div>
+
+      </div><!-- /card-body -->
+
+      <!-- Footer -->
+      <div class="card-footer">
+        Your conversations are treated with care and won't be shared without your permission.
+      </div>
+
+    </div><!-- /card -->
+  </div><!-- /page -->
+
+  <script>
+    /* ── Supabase init ── */
+    const SUPABASE_URL  = 'https://pxwtychuelnrainihaab.supabase.co';
+    const SUPABASE_KEY  = 'sb_publishable__diWzjMaKAvj2JjA_-HlIA_2Yxo7fqu';
+    const APP_PAGE      = 'index.html';
+
+    const { createClient } = supabase;
+    const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    /* ── If already logged in, skip this page ── */
+    sb.auth.getSession().then(({ data: { session } }) => {
+      if (session) window.location.href = APP_PAGE;
+    });
+
+    /* ── Tab switching ── */
+    function switchTab(tab) {
+      ['login', 'signup'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('active', t === tab);
+        document.getElementById(`tab-${t}`).setAttribute('aria-selected', t === tab);
+        document.getElementById(`panel-${t}`).classList.toggle('active', t === tab);
+      });
+      showMsg('', '');
+    }
+
+    /* ── Status message ── */
+    function showMsg(text, type) {
+      const box = document.getElementById('msg-box');
+      box.textContent = text;
+      box.className = 'msg-box' + (text ? ` show ${type}` : '');
+    }
+
+    /* ── Loading state ── */
+    function setLoading(btnId, loading) {
+      const btn = document.getElementById(btnId);
+      btn.classList.toggle('loading', loading);
+      btn.disabled = loading;
+    }
+
+    /* ── Login ── */
+    async function handleLogin() {
+      const email    = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      if (!email || !password) { showMsg('Please enter your email and password.', 'error'); return; }
+
+      setLoading('login-btn', true);
+      showMsg('', '');
+
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        showMsg(error.message, 'error');
+        setLoading('login-btn', false);
+      } else {
+        window.location.href = APP_PAGE;
+      }
+    }
+
+    /* ── Sign-up ── */
+    async function handleSignup() {
+      const email    = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const confirm  = document.getElementById('signup-confirm').value;
+      if (!email || !password || !confirm) { showMsg('Please fill in all fields.', 'error'); return; }
+      if (password.length < 6) { showMsg('Password must be at least 6 characters.', 'error'); return; }
+      if (password !== confirm) { showMsg('Passwords don\'t match. Please try again.', 'error'); return; }
+
+      setLoading('signup-btn', true);
+      showMsg('', '');
+
+      const { error } = await sb.auth.signUp({ email, password });
+
+      setLoading('signup-btn', false);
+
+      if (error) {
+        showMsg(error.message, 'error');
+      } else {
+        showMsg('Almost there! Check your email to confirm your account.', 'success');
+      }
+    }
+
+    /* ── Allow Enter key ── */
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      const loginActive = document.getElementById('panel-login').classList.contains('active');
+      if (loginActive) handleLogin();
+      else handleSignup();
+    });
+  </script>
+</body>
+</html>

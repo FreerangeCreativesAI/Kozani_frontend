@@ -1,0 +1,272 @@
+/* =========================
+   Kozani — Login Page Styles
+   ========================= */
+
+/* ── Design tokens (mirrors style.css) ── */
+:root {
+  --brand:          #ef4878;
+  --brand-strong:   #d61c62;
+  --brand-stronger: #c81759;
+
+  --pink-50:  #fff6f9;
+  --pink-100: #fdebf2;
+  --pink-200: #f9d8e6;
+
+  --bg:      #ffffff;
+  --surface: #fafafa;
+  --text:    #1f2937;
+  --muted:   #4b5563;
+  --border:  #e7e7ea;
+  --alert:   #b10e1e;
+
+  --radius:   14px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.04);
+  --shadow-2: 0 6px 24px rgba(0,0,0,.09);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Page layout ── */
+.page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, var(--pink-100) 0%, transparent 70%),
+    var(--bg);
+}
+
+/* ── Card ── */
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border: 1px solid var(--pink-200);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  animation: rise .45s cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Card header ── */
+.card-header {
+  background: linear-gradient(160deg, var(--pink-100) 0%, #fff 100%);
+  border-bottom: 1px solid var(--pink-200);
+  padding: 32px 32px 24px;
+  text-align: center;
+}
+
+.brand {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #0a0b0d;
+  letter-spacing: -.5px;
+  margin-bottom: 6px;
+}
+
+.tagline {
+  font-size: .95rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.tab-btn {
+  padding: 13px;
+  border: none;
+  background: transparent;
+  font: 500 .9rem/1 'DM Sans', sans-serif;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .18s, box-shadow .18s;
+  border-radius: 0;
+  height: auto;
+  min-width: unset;
+}
+
+.tab-btn.active {
+  color: var(--brand-strong);
+  box-shadow: inset 0 -2px 0 var(--brand-strong);
+  background: #fff;
+}
+
+.tab-btn:hover:not(.active) {
+  color: var(--text);
+  background: var(--pink-50);
+}
+
+/* ── Card body ── */
+.card-body {
+  padding: 28px 32px 32px;
+}
+
+/* ── Panels ── */
+.panel { display: none; flex-direction: column; gap: 16px; }
+.panel.active { display: flex; animation: fade-in .25s ease both; }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Form elements ── */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font: inherit;
+  font-size: .95rem;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  transition: border-color .18s, box-shadow .18s;
+}
+
+input::placeholder { color: #97a0ab; }
+
+input:focus {
+  border-color: color-mix(in srgb, var(--brand) 60%, #ddd);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 15%, transparent);
+}
+
+/* ── Primary button ── */
+.btn-primary {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px;
+  color: #fff;
+  background: linear-gradient(180deg, var(--brand-strong), var(--brand-stronger));
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font: 600 .95rem/1 'DM Sans', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5ch;
+  box-shadow: 0 6px 16px rgba(200,23,89,.18), 0 2px 4px rgba(0,0,0,.04);
+  transition: filter .15s, transform .12s;
+  margin-top: 4px;
+}
+
+.btn-primary:hover  { filter: brightness(1.05); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Messages ── */
+.msg-box {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: .875rem;
+  display: none;
+}
+
+.msg-box.show { display: block; }
+
+.msg-box.error {
+  background: #fff6f6;
+  border: 1px solid #ffd3d3;
+  color: var(--alert);
+}
+
+.msg-box.success {
+  background: var(--pink-50);
+  border: 1px solid var(--pink-200);
+  color: var(--brand-stronger);
+}
+
+/* ── Divider ── */
+.divider {
+  text-align: center;
+  font-size: .8rem;
+  color: #b0b7c3;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 24px);
+  height: 1px;
+  background: var(--border);
+}
+
+.divider::before { left: 0; }
+.divider::after  { right: 0; }
+
+/* ── Card footer ── */
+.card-footer {
+  padding: 14px 32px 20px;
+  text-align: center;
+  font-size: .8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--pink-100);
+  background: var(--pink-50);
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+  display: none;
+}
+
+.btn-primary.loading .spinner { display: block; }
+.btn-primary.loading .btn-label { display: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .card-header, .card-body { padding-left: 20px; padding-right: 20px; }
+  .card-footer { padding-left: 20px; padding-right: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
