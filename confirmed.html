@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="login.css" />
-  <style>
+<style>
     .confirmed-card {
       text-align: center;
       padding: 48px 32px 40px;
@@ -102,7 +102,7 @@
           Whenever you're ready, your companion is waiting.
         </p>
 
-        <a href="index.html" class="btn-primary" style="text-decoration:none;width:100%;max-width:320px;">
+        <a href="index.html" class="btn-primary" id="cta-btn" style="text-decoration:none;width:100%;max-width:320px;">
           Start chatting
         </a>
       </div>
@@ -114,5 +114,25 @@
 
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://pxwtychuelnrainihaab.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable__diWzjMaKAvj2JjA_-HlIA_2Yxo7fqu';
+
+    const { createClient } = supabase;
+    const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Supabase puts the session token in the URL hash after confirmation.
+    // getSession() triggers the client to read and store it automatically.
+    sb.auth.getSession().then(({ data: { session } }) => {
+      const btn = document.getElementById('cta-btn');
+      if (!session) {
+        // Session couldn't be established — fall back to login
+        btn.href = 'login.html';
+      }
+      // If session exists, the button already points to index.html — no change needed
+    });
+  </script>
 </body>
 </html>
