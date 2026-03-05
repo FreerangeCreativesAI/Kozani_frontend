@@ -205,7 +205,8 @@ header.hero {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 4px;
- 
+  position: relative;
+
   width: 100%;
   max-width: 100%;
   margin: 3rem auto 2rem;
@@ -216,6 +217,26 @@ header.hero {
   border-radius: var(--radius);
   box-shadow: var(--shadow-1);
 }
+
+.btn-signout {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  padding: 0 14px;
+  height: 36px;
+  min-width: unset;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand-strong);
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--brand) 40%, #ddd);
+  border-radius: 999px;
+}
+.btn-signout:hover {
+  background: color-mix(in srgb, var(--pink-100) 80%, #ffffff);
+  border-color: var(--brand);
+}
+.btn-signout:active { transform: translateY(1px); }
 
 
 
