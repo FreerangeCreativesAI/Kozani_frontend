@@ -8,6 +8,44 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="login.css" />
+  <style>
+    .forgot-link {
+      background: none;
+      border: none;
+      padding: 0;
+      font: 400 .85rem/1 'DM Sans', sans-serif;
+      color: var(--brand-strong);
+      cursor: pointer;
+      text-align: right;
+      align-self: flex-end;
+      height: auto;
+      min-width: unset;
+      border-radius: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      margin-top: -6px;
+    }
+    .forgot-link:hover { color: var(--brand-stronger); }
+
+    .back-link {
+      background: none;
+      border: none;
+      padding: 0;
+      font: 400 .85rem/1 'DM Sans', sans-serif;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: center;
+      height: auto;
+      min-width: unset;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: -4px;
+    }
+    .back-link:hover { color: var(--text); }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -20,8 +58,8 @@
         <div class="tagline">Your caring companion through pregnancy and new motherhood</div>
       </div>
 
-      <!-- Tabs -->
-      <div class="tabs" role="tablist">
+      <!-- Tabs (hidden when forgot password panel is active) -->
+      <div class="tabs" id="tabs" role="tablist">
         <button class="tab-btn active" id="tab-login" role="tab" aria-selected="true"  aria-controls="panel-login"  onclick="switchTab('login')">Sign in</button>
         <button class="tab-btn"        id="tab-signup" role="tab" aria-selected="false" aria-controls="panel-signup" onclick="switchTab('signup')">Create account</button>
       </div>
@@ -40,14 +78,9 @@
           </label>
           <label>
             Password
-            <div class="input-wrap">
-              <input type="password" id="login-password" placeholder="Your password" autocomplete="current-password" />
-              <button type="button" class="eye-btn" onclick="togglePassword('login-password', this)" aria-label="Show password">
-                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
-              </button>
-            </div>
+            <input type="password" id="login-password" placeholder="Your password" autocomplete="current-password" />
           </label>
+          <button class="forgot-link" onclick="switchTab('forgot')">Forgot password?</button>
           <button class="btn-primary" id="login-btn" onclick="handleLogin()">
             <span class="spinner"></span>
             <span class="btn-label">Sign in</span>
@@ -62,28 +95,29 @@
           </label>
           <label>
             Password
-            <div class="input-wrap">
-              <input type="password" id="signup-password" placeholder="Choose a password" autocomplete="new-password" />
-              <button type="button" class="eye-btn" onclick="togglePassword('signup-password', this)" aria-label="Show password">
-                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
-              </button>
-            </div>
+            <input type="password" id="signup-password" placeholder="Choose a password" autocomplete="new-password" />
           </label>
           <label>
             Confirm password
-            <div class="input-wrap">
-              <input type="password" id="signup-confirm" placeholder="Repeat your password" autocomplete="new-password" />
-              <button type="button" class="eye-btn" onclick="togglePassword('signup-confirm', this)" aria-label="Show password">
-                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
-              </button>
-            </div>
+            <input type="password" id="signup-confirm" placeholder="Repeat your password" autocomplete="new-password" />
           </label>
           <button class="btn-primary" id="signup-btn" onclick="handleSignup()">
             <span class="spinner"></span>
             <span class="btn-label">Create account</span>
           </button>
+        </div>
+
+        <!-- Forgot password panel -->
+        <div class="panel" id="panel-forgot">
+          <label>
+            Email
+            <input type="email" id="forgot-email" placeholder="you@example.com" autocomplete="email" />
+          </label>
+          <button class="btn-primary" id="forgot-btn" onclick="handleForgotPassword()">
+            <span class="spinner"></span>
+            <span class="btn-label">Send reset link</span>
+          </button>
+          <button class="back-link" onclick="switchTab('login')">← Back to sign in</button>
         </div>
 
       </div><!-- /card-body -->
@@ -110,23 +144,25 @@
       if (session) window.location.href = APP_PAGE;
     });
 
-    /* ── Toggle password visibility ── */
-    function togglePassword(inputId, btn) {
-      const input = document.getElementById(inputId);
-      const isHidden = input.type === 'password';
-      input.type = isHidden ? 'text' : 'password';
-      btn.querySelector('.eye-icon').style.display    = isHidden ? 'none'  : '';
-      btn.querySelector('.eye-off-icon').style.display = isHidden ? ''     : 'none';
-      btn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
-    }
-
     /* ── Tab switching ── */
     function switchTab(tab) {
-      ['login', 'signup'].forEach(t => {
+      const tabs = ['login', 'signup'];
+      const isForgot = tab === 'forgot';
+
+      // Show/hide the tab bar when switching to/from forgot panel
+      document.getElementById('tabs').style.display = isForgot ? 'none' : '';
+
+      // Toggle tab buttons (only for login/signup)
+      tabs.forEach(t => {
         document.getElementById(`tab-${t}`).classList.toggle('active', t === tab);
         document.getElementById(`tab-${t}`).setAttribute('aria-selected', t === tab);
+      });
+
+      // Toggle all panels including forgot
+      [...tabs, 'forgot'].forEach(t => {
         document.getElementById(`panel-${t}`).classList.toggle('active', t === tab);
       });
+
       showMsg('', '');
     }
 
@@ -175,9 +211,7 @@
       setLoading('signup-btn', true);
       showMsg('', '');
 
-      const { error } = await sb.auth.signUp({ email, password,  options :{
-        emailRedirectTo : 'https://kozani-frontend.onrender.com/confirmed.html'
-      }});
+      const { error } = await sb.auth.signUp({ email, password });
 
       setLoading('signup-btn', false);
 
@@ -188,12 +222,33 @@
       }
     }
 
+    /* ── Forgot password ── */
+    async function handleForgotPassword() {
+      const email = document.getElementById('forgot-email').value.trim();
+      if (!email) { showMsg('Please enter your email address.', 'error'); return; }
+
+      setLoading('forgot-btn', true);
+      showMsg('', '');
+
+      const { error } = await sb.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + '/reset-password.html'
+      });
+
+      setLoading('forgot-btn', false);
+
+      if (error) {
+        showMsg(error.message, 'error');
+      } else {
+        showMsg("If an account exists for that email, you'll receive a reset link shortly.", 'success');
+      }
+    }
+
     /* ── Allow Enter key ── */
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Enter') return;
-      const loginActive = document.getElementById('panel-login').classList.contains('active');
-      if (loginActive) handleLogin();
-      else handleSignup();
+      if (document.getElementById('panel-login').classList.contains('active'))  handleLogin();
+      if (document.getElementById('panel-signup').classList.contains('active')) handleSignup();
+      if (document.getElementById('panel-forgot').classList.contains('active')) handleForgotPassword();
     });
   </script>
 </body>
