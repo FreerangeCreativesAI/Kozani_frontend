@@ -44,7 +44,8 @@ function addMsg(text, sender = "bot") {
 
 const API_BASE ={
   "local": "http://localhost:3000",
-  "prod": "https://kozani-backend-2.onrender.com"}
+  "prod": "https://kozani-backend-2.onrender.com",
+  "aws": "https://0i1mxufqw5.execute-api.eu-central-1.amazonaws.com" }
 
 const environment = "prod"  // change to "local" if you want to connect to a locally running Kozani backend
 
@@ -107,12 +108,7 @@ if (form && input) {
 
     // Show user's message
     addMsg(text, "user");
-    
-    // 2️⃣ STORE user message in memory
-    conversationHistory.push({
-    role: "user",
-    content: text
-  });
+  
 
 
     input.value = "";
@@ -123,6 +119,13 @@ if (form && input) {
     try {
       const res = await sendToKozaniBackend(text);
       addMsg(res.answer, "bot");  // ⬅️ use the answer string
+
+          // 2️⃣ STORE user message in memory
+          conversationHistory.push({
+          role: "user",
+          content: text
+        });
+
       // 4️⃣ STORE assistant reply in memory
       conversationHistory.push({
       role: "assistant",
