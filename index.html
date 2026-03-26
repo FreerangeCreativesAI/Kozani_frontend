@@ -1,12 +1,38 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KGWDRGVZ');</script>
+    <!-- End Google Tag Manager -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
     const _sb = window.supabase.createClient(
         'https://pxwtychuelnrainihaab.supabase.co',
         'sb_publishable__diWzjMaKAvj2JjA_-HlIA_2Yxo7fqu'
     );
+
+    // IMMEDIATE CHECK: if the URL hash contains a recovery token, redirect
+    // before Supabase even processes it. This is the fastest possible catch.
+    (function() {
+      const hash = window.location.hash;
+      if (hash && hash.includes('type=recovery')) {
+        window.location.replace('reset-password.html' + hash);
+        return; // stop all further execution
+      }
+    })();
+
+    // BACKUP: listen for the Supabase auth event in case the hash check misses
+    _sb.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        window.location.replace('reset-password.html');
+      }
+    });
+
+    // Auth guard — only runs if this is NOT a recovery redirect
     _sb.auth.getUser().then(({ data: { user }, error }) => {
         if (!user || error) {
             _sb.auth.signOut().then(() => {
@@ -20,8 +46,14 @@
     <title>Perinatal Companion (MVP)</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGWDRGVZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <main class="app">
       
       <header class="hero">

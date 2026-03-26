@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KGWDRGVZ');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms and Conditions — Kozani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --brand:          #ef4878;
+        --brand-strong:   #d61c62;
+        --brand-stronger: #c81759;
+
+        --pink-50:  #fff6f9;
+        --pink-100: #fdebf2;
+        --pink-200: #f9d8e6;
+
+        --bg:      #ffffff;
+        --surface: #fafafa;
+        --text:    #1f2937;
+        --muted:   #4b5563;
+        --border:  #e7e7ea;
+        --alert:   #b10e1e;
+
+        --radius:   14px;
+        --shadow-2: 0 6px 24px rgba(0,0,0,.09);
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body {
+        min-height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── Page background ── */
+      .page {
+        min-height: 100dvh;
+        background:
+          radial-gradient(ellipse 80% 60% at 50% -10%, var(--pink-100) 0%, transparent 70%),
+          var(--bg);
+        padding: 40px 16px 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* ── Document card ── */
+      .doc {
+        width: 100%;
+        max-width: 720px;
+        background: #fff;
+        border: 1px solid var(--pink-200);
+        border-radius: calc(var(--radius) + 4px);
+        box-shadow: var(--shadow-2);
+        overflow: hidden;
+        animation: rise .45s cubic-bezier(.22,1,.36,1) both;
+      }
+
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ── Header ── */
+      .doc-header {
+        background: linear-gradient(160deg, var(--pink-100) 0%, #fff 100%);
+        border-bottom: 1px solid var(--pink-200);
+        padding: 40px 40px 32px;
+        text-align: center;
+      }
+
+      .brand {
+        font-family: 'Lora', Georgia, serif;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #0a0b0d;
+        letter-spacing: -.5px;
+        margin-bottom: 6px;
+      }
+
+      .doc-title {
+        font-family: 'Lora', Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: #0a0b0d;
+        margin-top: 8px;
+      }
+
+      .doc-meta {
+        font-size: .85rem;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      /* ── Body ── */
+      .doc-body {
+        padding: 36px 40px 44px;
+      }
+
+      /* ── Alert banner ── */
+      .alert-banner {
+        background: #fff6f6;
+        border: 1px solid #ffd3d3;
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-bottom: 32px;
+        font-size: .9rem;
+        line-height: 1.6;
+        color: var(--alert);
+      }
+
+      .alert-banner strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      /* ── Crisis banner ── */
+      .crisis-banner {
+        background: var(--pink-50);
+        border: 1px solid var(--pink-200);
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        font-size: .9rem;
+        line-height: 1.6;
+        color: var(--brand-stronger);
+      }
+
+      .crisis-banner strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .crisis-banner ul {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0;
+      }
+
+      .crisis-banner li {
+        padding: 2px 0;
+      }
+
+      .crisis-banner li::before {
+        content: '• ';
+        color: var(--brand-strong);
+      }
+
+      /* ── Sections ── */
+      .section {
+        margin-bottom: 28px;
+      }
+
+      .section-number {
+        font-family: 'Lora', Georgia, serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #0a0b0d;
+        margin-bottom: 8px;
+      }
+
+      .doc-body p {
+        font-size: .925rem;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+
+      .doc-body ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 12px;
+      }
+
+      .doc-body ul li {
+        font-size: .925rem;
+        color: var(--text);
+        padding: 3px 0 3px 20px;
+        position: relative;
+      }
+
+      .doc-body ul li::before {
+        content: '•';
+        position: absolute;
+        left: 4px;
+        color: var(--brand-strong);
+      }
+
+      /* ── Footer ── */
+      .doc-footer {
+        padding: 16px 40px 24px;
+        text-align: center;
+        font-size: .8rem;
+        color: var(--muted);
+        border-top: 1px solid var(--pink-100);
+        background: var(--pink-50);
+      }
+
+      .doc-footer a {
+        color: var(--brand-strong);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .doc-footer a:hover {
+        color: var(--brand-stronger);
+      }
+
+      /* ── Back link ── */
+      .back-to-login {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 20px;
+        font-size: .88rem;
+        font-weight: 500;
+        color: var(--brand-strong);
+        text-decoration: none;
+        transition: color .15s;
+      }
+
+      .back-to-login:hover {
+        color: var(--brand-stronger);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 580px) {
+        .doc-header { padding: 32px 20px 24px; }
+        .doc-body   { padding: 28px 20px 36px; }
+        .doc-footer { padding: 16px 20px 24px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGWDRGVZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="page">
+
+      <!-- <a href="login.html" class="back-to-login">← Back to sign in</a> -->
+
+      <div class="doc">
+
+        <!-- Header -->
+        <div class="doc-header">
+          <div class="brand">Kozani</div>
+          <div class="doc-title">Terms and Conditions of Use</div>
+          <div class="doc-meta">Version 1.0 &middot; Last Updated: [Insert Date] &middot; Governing Law: South Africa</div>
+        </div>
+
+        <!-- Body -->
+        <div class="doc-body">
+
+          <!-- Important banner -->
+          <div class="alert-banner">
+            <strong>⚠ Important</strong>
+            Kozani is not a medical service. It does not provide medical advice, diagnosis, or treatment, and is not a substitute for professional healthcare. If you are in crisis or experiencing a medical emergency, contact emergency services or a crisis line immediately.
+          </div>
+
+          <!-- Section 1 -->
+          <div class="section">
+            <div class="section-number">1. About Kozani</div>
+            <p>Kozani is an AI-powered conversational assistant designed to provide general information, emotional support, and psychoeducation related to pregnancy, postpartum care, and perinatal mental health.</p>
+            <p>Your acceptance of these Terms is confirmed at the point of registration via an explicit checkbox acknowledgement. By checking this box, you confirm that you have read, understood, and agree to be bound by these Terms and Conditions. You may not proceed to use Kozani without completing this step.</p>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="section">
+            <div class="section-number">2. Not Medical Advice — Critical Limitation</div>
+            <p>Kozani does not provide medical advice, clinical diagnosis, psychotherapy, or treatment. Nothing Kozani says should be interpreted as professional medical, psychiatric, or midwifery advice.</p>
+            <p>You must always consult a licensed healthcare professional — including your doctor, midwife, obstetrician, or mental health provider — for any concern related to your health or the health of your baby. Do not delay or disregard professional medical advice based on anything Kozani says.</p>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="section">
+            <div class="section-number">3. Kozani Does Not Replace Professional Care</div>
+            <p>Kozani is a supplementary support tool only. By using Kozani, you expressly acknowledge and agree that:</p>
+            <ul>
+              <li>You will not use Kozani as your sole or primary source of health or mental health guidance.</li>
+              <li>Kozani cannot monitor your physical or psychological wellbeing.</li>
+              <li>Kozani cannot establish a therapeutic relationship or provide ongoing clinical care.</li>
+              <li>Decisions about your health and that of your child must be made with a qualified professional.</li>
+            </ul>
+            <p>If Kozani's responses ever conflict with guidance from your healthcare provider, follow your healthcare provider's advice. Kozani should not be relied upon for ongoing emotional or mental health support in place of professional care or trusted human support networks.</p>
+          </div>
+
+          <!-- Section 4 -->
+          <div class="section">
+            <div class="section-number">4. Perinatal Mental Health — Special Considerations</div>
+            <p>Perinatal mental health conditions — including antenatal and postnatal depression, anxiety, birth trauma, pregnancy loss, and perinatal OCD — can be serious and require professional assessment. Kozani may offer general psychoeducation and signposting, but:</p>
+            <ul>
+              <li>Cannot diagnose or assess the severity of any mental health condition.</li>
+              <li>Cannot prescribe or advise on medication, including during pregnancy or breastfeeding.</li>
+              <li>Cannot replace a psychiatrist, psychologist, counsellor, or social worker.</li>
+              <li>May not reflect the most current clinical guidelines.</li>
+            </ul>
+            <p>If you are experiencing symptoms that affect your daily functioning, your relationship with your baby, or your ability to care for yourself, seek professional support immediately.</p>
+          </div>
+
+          <!-- Section 5 -->
+          <div class="section">
+            <div class="section-number">5. Crisis and Emergency Situations</div>
+            <div class="crisis-banner">
+              <strong>🚨 Kozani is not a crisis service.</strong>
+              If you are experiencing thoughts of suicide, self-harm, harm to your baby or others, or any medical emergency, stop using Kozani and contact emergency services or a crisis helpline immediately.
+              <ul>
+                <li>Emergency services: 10111 (SAPS) / 10177 (Ambulance) / 112 (all networks)</li>
+                <li>SADAG 24-hour helpline: 0800 456 789</li>
+                <li>Suicide Crisis Line: 0800 567 567</li>
+              </ul>
+            </div>
+            <p>While Kozani may encourage you to seek help, it cannot assess risk, intervene in a crisis, or contact services on your behalf.</p>
+          </div>
+
+          <!-- Section 6 -->
+          <div class="section">
+            <div class="section-number">6. Limitations of AI-Generated Responses</div>
+            <p>Kozani uses artificial intelligence to generate responses. You acknowledge that:</p>
+            <ul>
+              <li>Responses may be incomplete, inaccurate, outdated, or not applicable to your situation.</li>
+              <li>AI cannot fully understand individual medical, cultural, or personal circumstances.</li>
+              <li>Kozani's knowledge has limitations and may not reflect the latest research or guidelines.</li>
+            </ul>
+            <p>You use Kozani at your own discretion and risk.</p>
+          </div>
+
+          <!-- Section 7 -->
+          <div class="section">
+            <div class="section-number">7. Your Responsibilities</div>
+            <p>By using Kozani, you agree to:</p>
+            <ul>
+              <li>Use the platform responsibly and in good faith.</li>
+              <li>Seek qualified professional care whenever needed.</li>
+              <li>Not share information that could identify or harm third parties.</li>
+              <li>Immediately contact emergency services if you or someone else is in danger.</li>
+            </ul>
+            <p>You are solely responsible for any decisions or actions you take based on Kozani's responses.</p>
+          </div>
+
+          <!-- Section 7.1 -->
+          <div class="section">
+            <div class="section-number">7.1. Acceptable Use</div>
+            <p>You may use Kozani only for its intended purpose of receiving general information, psychoeducation, and emotional support related to pregnancy, postpartum care, and perinatal wellbeing.</p>
+            <p>You agree not to use Kozani:</p>
+            <ul>
+              <li>To seek medical or mental health advice for another identifiable individual.</li>
+              <li>To generate or rely on information for professional, clinical, or commercial purposes.</li>
+              <li>In any way that could harm, harass, or violate the privacy of others.</li>
+              <li>For any unlawful or inappropriate purpose.</li>
+            </ul>
+            <p>Kozani may restrict or terminate access where misuse of the platform is identified.</p>
+          </div>
+
+          <!-- Section 8 -->
+          <div class="section">
+            <div class="section-number">8. Eligibility</div>
+            <p>Kozani is intended for individuals 18 years or older. Users less than 18 are encouraged not to use Kozani but to consult with qualified healthcare professionals instead.</p>
+          </div>
+
+          <!-- Section 9 -->
+          <div class="section">
+            <div class="section-number">9. Privacy and Data</div>
+            <p>Your interactions with Kozani may be processed and stored to deliver the service, improve system performance, and ensure safety and quality. We handle your data in accordance with the Protection of Personal Information Act (POPIA), South Africa. Please share sensitive health information with caution. Refer to our <a href="/privacy" style="color: var(--brand-strong); text-underline-offset: 2px;">Privacy Policy</a> for full details.</p>
+            <p>Personal information will only be retained for as long as necessary to provide the Kozani service, improve system performance, and maintain safety and quality, or as required by applicable law. Where appropriate, data may be securely deleted, anonymised, or de-identified once it is no longer required for these purposes.</p>
+            <p>Where user interactions may include health-related or other sensitive personal information, Kozani will take reasonable steps to ensure such information is handled with appropriate care and protection in accordance with applicable law. For safety, quality improvement, and system monitoring purposes, a limited number of authorised team members may review anonymised or de-identified conversations. Such reviews are conducted in accordance with applicable data protection laws and internal safeguards designed to protect user privacy.</p>
+          </div>
+
+          <!-- Section 10 -->
+          <div class="section">
+            <div class="section-number">10. Limitation of Liability</div>
+            <p>To the maximum extent permitted by South African law, Kozani and its creators, affiliates, and service providers shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from:</p>
+            <ul>
+              <li>Use of, or inability to use, Kozani.</li>
+              <li>Reliance on any information provided by Kozani.</li>
+              <li>Any health-related or other decisions made based on Kozani's responses.</li>
+              <li>Errors, omissions, or inaccuracies in AI-generated content.</li>
+            </ul>
+            <p>Kozani is provided "as is" and "as available" without warranties of any kind, express or implied. We aim to provide supportive, helpful, and reliable information for users. However, we cannot guarantee that the service will always be uninterrupted, error-free, or suitable for every individual situation, and no warranties or guarantees of any kind, whether express or implied, are made.</p>
+          </div>
+
+          <!-- Section 11 -->
+          <div class="section">
+            <div class="section-number">11. Changes to the Service and Terms</div>
+            <p>We may update, modify, or discontinue Kozani at any time without prior notice. These Terms may be updated periodically; when this occurs, users will be informed through in-app notifications. Continued use of Kozani after changes are posted constitutes your acceptance of the revised Terms. We encourage you to review these Terms regularly.</p>
+          </div>
+
+          <!-- Section 12 -->
+          <div class="section">
+            <div class="section-number">12. Governing Law</div>
+            <p>These Terms are governed by the laws of the Republic of South Africa. Any disputes shall be subject to the exclusive jurisdiction of South African courts.</p>
+          </div>
+
+          <!-- Section 13 -->
+          <div class="section">
+            <div class="section-number">13. Contact Us</div>
+            <p>For questions about these Terms, please contact:</p>
+            <p>Kozani Support — <a href="mailto:kozani.support@freerangecreatives.co.za" style="color: var(--brand-strong); text-underline-offset: 2px;">kozani.support@freerangecreatives.co.za</a></p>
+          </div>
+
+          <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--pink-200); font-size: .875rem; color: var(--muted);">By using Kozani, you confirm that you have read and understood these Terms and Conditions, including the critical limitations regarding medical advice and professional care.</p>
+
+        </div><!-- /doc-body -->
+
+      </div><!-- /doc -->
+    </div><!-- /page -->
+  </body>
+</html>

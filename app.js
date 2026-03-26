@@ -44,10 +44,9 @@ function addMsg(text, sender = "bot") {
 
 const API_BASE ={
   "local": "http://localhost:3000",
-  "prod": "https://kozani-backend-2.onrender.com",
   "aws": "https://0i1mxufqw5.execute-api.eu-central-1.amazonaws.com" }
 
-const environment = "prod"  // change to "local" if you want to connect to a locally running Kozani backend
+const environment = "aws"  // change to "local" if you want to connect to a locally running Kozani backend
 
 
 

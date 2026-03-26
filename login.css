@@ -302,6 +302,92 @@ input:focus {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ── Forgot / back links ── */
+.forgot-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: 400 .85rem/1 'DM Sans', sans-serif;
+  color: var(--brand-strong);
+  cursor: pointer;
+  text-align: right;
+  align-self: flex-end;
+  height: auto;
+  min-width: unset;
+  border-radius: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-top: -6px;
+}
+
+.forgot-link:hover { color: var(--brand-stronger); }
+
+.back-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: 400 .85rem/1 'DM Sans', sans-serif;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  height: auto;
+  min-width: unset;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: -4px;
+}
+
+.back-link:hover { color: var(--text); }
+
+/* ── Consent checkboxes ── */
+.consent-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.consent-label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;   /* was: first baseline */
+  gap: 10px;
+  font-size: .84rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.consent-label .required-star {
+  color: var(--alert);
+  font-weight: 600;
+  margin-left: 1px;
+}
+
+.consent-label input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand-strong);
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 0px;   /* nudge down to optically center against first line */
+}
+
+.consent-label a {
+  color: var(--brand-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consent-label a:hover {
+  color: var(--brand-stronger);
+}
+
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .card-header, .card-body { padding-left: 20px; padding-right: 20px; }

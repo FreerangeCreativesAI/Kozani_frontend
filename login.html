@@ -1,54 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Kozani</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="login.css" />
-  <style>
-    .forgot-link {
-      background: none;
-      border: none;
-      padding: 0;
-      font: 400 .85rem/1 'DM Sans', sans-serif;
-      color: var(--brand-strong);
-      cursor: pointer;
-      text-align: right;
-      align-self: flex-end;
-      height: auto;
-      min-width: unset;
-      border-radius: 0;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      margin-top: -6px;
-    }
-    .forgot-link:hover { color: var(--brand-stronger); }
-
-    .back-link {
-      background: none;
-      border: none;
-      padding: 0;
-      font: 400 .85rem/1 'DM Sans', sans-serif;
-      color: var(--muted);
-      cursor: pointer;
-      text-align: center;
-      height: auto;
-      min-width: unset;
-      border-radius: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      margin-top: -4px;
-    }
-    .back-link:hover { color: var(--text); }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KGWDRGVZ');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Kozani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="login.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGWDRGVZ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="page">
     <div class="card">
 
@@ -67,11 +40,9 @@
       <!-- Body -->
       <div class="card-body">
 
-        <!-- Shared status box -->
-        <div class="msg-box" id="msg-box" role="alert"></div>
-
         <!-- Login panel -->
         <div class="panel active" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+          <div class="msg-box" id="msg-login" role="alert"></div>
           <label>
             Email
             <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
@@ -95,6 +66,7 @@
 
         <!-- Sign-up panel -->
         <div class="panel" id="panel-signup" role="tabpanel" aria-labelledby="tab-signup">
+          <div class="msg-box" id="msg-signup" role="alert"></div>
           <label>
             Email
             <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" />
@@ -119,6 +91,19 @@
               </button>
             </div>
           </label>
+
+          <!-- Consent checkboxes -->
+          <div class="consent-group">
+            <label class="consent-label">
+              <input type="checkbox" id="consent-terms" />
+              <span>I have read and agree to the <a href="terms.html" target="_blank">Terms and Conditions</a>.<span class="required-star"> *</span></span>
+            </label>
+            <label class="consent-label">
+              <input type="checkbox" id="consent-data" />
+              <span>I consent to Kozani processing my health-related data to provide this service.<span class="required-star"> *</span></span>
+            </label>
+          </div>
+
           <button class="btn-primary" id="signup-btn" onclick="handleSignup()">
             <span class="spinner"></span>
             <span class="btn-label">Create account</span>
@@ -127,6 +112,7 @@
 
         <!-- Forgot password panel -->
         <div class="panel" id="panel-forgot">
+          <div class="msg-box" id="msg-forgot" role="alert"></div>
           <label>
             Email
             <input type="email" id="forgot-email" placeholder="you@example.com" autocomplete="email" />
@@ -157,6 +143,13 @@
     const { createClient } = supabase;
     const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+    /* ── Intercept password recovery events before anything else ── */
+    sb.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        window.location.href = '/reset-password.html';
+      }
+    });
+
     /* ── If already logged in, skip this page ── */
     sb.auth.getSession().then(({ data: { session } }) => {
       if (session) window.location.href = APP_PAGE;
@@ -177,26 +170,24 @@
       const tabs = ['login', 'signup'];
       const isForgot = tab === 'forgot';
 
-      // Show/hide the tab bar when switching to/from forgot panel
       document.getElementById('tabs').style.display = isForgot ? 'none' : '';
 
-      // Toggle tab buttons (only for login/signup)
       tabs.forEach(t => {
         document.getElementById(`tab-${t}`).classList.toggle('active', t === tab);
         document.getElementById(`tab-${t}`).setAttribute('aria-selected', t === tab);
       });
 
-      // Toggle all panels including forgot
       [...tabs, 'forgot'].forEach(t => {
         document.getElementById(`panel-${t}`).classList.toggle('active', t === tab);
       });
 
-      showMsg('', '');
+      // Clear all message boxes when switching tabs
+      ['msg-login', 'msg-signup', 'msg-forgot'].forEach(id => showMsg(id, '', ''));
     }
 
     /* ── Status message ── */
-    function showMsg(text, type) {
-      const box = document.getElementById('msg-box');
+    function showMsg(boxId, text, type) {
+      const box = document.getElementById(boxId);
       box.textContent = text;
       box.className = 'msg-box' + (text ? ` show ${type}` : '');
     }
@@ -212,17 +203,21 @@
     async function handleLogin() {
       const email    = document.getElementById('login-email').value.trim();
       const password = document.getElementById('login-password').value;
-      if (!email || !password) { showMsg('Please enter your email and password.', 'error'); return; }
+      if (!email || !password) { showMsg('msg-login', 'Please enter your email and password.', 'error'); return; }
 
       setLoading('login-btn', true);
-      showMsg('', '');
+      showMsg('msg-login', '', '');
 
       const { error } = await sb.auth.signInWithPassword({ email, password });
 
       if (error) {
-        showMsg(error.message, 'error');
+        showMsg('msg-login', error.message, 'error');
         setLoading('login-btn', false);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'login_failed', method: 'email' });
       } else {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'login_success', method: 'email' });
         window.location.href = APP_PAGE;
       }
     }
@@ -232,42 +227,58 @@
       const email    = document.getElementById('signup-email').value.trim();
       const password = document.getElementById('signup-password').value;
       const confirm  = document.getElementById('signup-confirm').value;
-      if (!email || !password || !confirm) { showMsg('Please fill in all fields.', 'error'); return; }
-      if (password.length < 6) { showMsg('Password must be at least 6 characters.', 'error'); return; }
-      if (password !== confirm) { showMsg('Passwords don\'t match. Please try again.', 'error'); return; }
+      const termsOk  = document.getElementById('consent-terms').checked;
+      const dataOk   = document.getElementById('consent-data').checked;
+
+      if (!email || !password || !confirm) { showMsg('msg-signup', 'Please fill in all fields.', 'error'); return; }
+      if (password.length < 6) { showMsg('msg-signup', 'Password must be at least 6 characters.', 'error'); return; }
+      if (password !== confirm) { showMsg('msg-signup', 'Passwords don\'t match. Please try again.', 'error'); return; }
+      if (!termsOk) { showMsg('msg-signup', 'Please agree to the Terms and Conditions to continue.', 'error'); return; }
+      if (!dataOk)  { showMsg('msg-signup', 'Please consent to data processing to continue.', 'error'); return; }
 
       setLoading('signup-btn', true);
-      showMsg('', '');
+      showMsg('msg-signup', '', '');
 
-      const { error } = await sb.auth.signUp({ email, password });
+      const { error } = await sb.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            consent_terms_version: '1.0',
+            consent_terms_at: new Date().toISOString(),
+            consent_data_processing: true,
+            consent_data_processing_at: new Date().toISOString()
+          }
+        }
+      });
 
       setLoading('signup-btn', false);
 
       if (error) {
-        showMsg(error.message, 'error');
+        showMsg('msg-signup', error.message, 'error');
       } else {
-        showMsg('Almost there! Check your email to confirm your account.', 'success');
+        showMsg('msg-signup', 'Almost there! Check your email to confirm your account.', 'success');
       }
     }
 
     /* ── Forgot password ── */
     async function handleForgotPassword() {
       const email = document.getElementById('forgot-email').value.trim();
-      if (!email) { showMsg('Please enter your email address.', 'error'); return; }
+      if (!email) { showMsg('msg-forgot', 'Please enter your email address.', 'error'); return; }
 
       setLoading('forgot-btn', true);
-      showMsg('', '');
+      showMsg('msg-forgot', '', '');
 
       const { error } = await sb.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/reset-password.html'
+        redirectTo: 'https://www.kozani.co.za/reset-password.html'
       });
 
       setLoading('forgot-btn', false);
 
       if (error) {
-        showMsg(error.message, 'error');
+        showMsg('msg-forgot', error.message, 'error');
       } else {
-        showMsg("If an account exists for that email, you'll receive a reset link shortly.", 'success');
+        showMsg('msg-forgot', "If an account exists for that email, you'll receive a reset link shortly.", 'success');
       }
     }
 
